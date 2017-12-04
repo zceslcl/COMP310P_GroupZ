@@ -7,7 +7,7 @@
 		margin: 0 auto;
 		max-width: 600px;
 		background: #777999;
-		text-align: center;
+		text-align: left;
 		
 		
 		

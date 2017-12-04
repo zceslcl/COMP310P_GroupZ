@@ -8,6 +8,11 @@
 		max-width: 600px;
 		background: #777999;
 		text-align: center;
+		
+		
+		
+		
+		padding: 0px;
 	}
 	div {
 		margin: 0 auto;

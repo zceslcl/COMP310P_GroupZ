@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>Management Center</title>  
+    <link rel="stylesheet" href="./include/css/pintuer.css">
+    <link rel="stylesheet" href="./include/css/admin.css">
+    <script src="./include/js/jquery.js"></script>   
+</head>
+<body style="background-color:#f2f9fd;">
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img src="./include/images/ggg.jpg" class="radius-circle rotate-hover" height="50" alt="" /> Group Z's Function Room Booking Site</h1>
+  </div>
+
+  <div class="head-l"><a href="##" class="button button-little bg-blue"><span></span>Welcome <?php echo $_SESSION['admin']['username']?></a> &nbsp;&nbsp;<a class="button button-little bg-red" href="./index.php?m=index&a=outlogin"><span class="icon-power-off"></span> Logout</a> </div>
+</div>
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>Navigation Menu</strong></div>
+  <h2><span class="icon-pencil-square-o"></span>Account management</h2>
+  <ul style="display:block">
+
+    <li><a href="./index.php?m=user&a=update&id=<?php echo $_SESSION['admin']['user_id']?>&username=<?php echo $_SESSION['admin']['username']?>" target="right"><span class="icon-caret-right"></span>Personal Details</a></li>
+  </ul>
+ 	<h2><span class="icon-pencil-square-o"></span>Event Categories</h2>
+  <ul style="display:block">
+    <li><a href="./index.php?m=type&a=add" target="right"><span class="icon-caret-right"></span>Add Category</a></li>
+    <li><a href="./index.php?m=type&a=show" target="right"><span class="icon-caret-right"></span>Browse Categories</a></li>
+  </ul>   
+  <h2><span class="icon-pencil-square-o"></span>Event Management</h2>
+  <ul>
+    <li><a href="./index.php?m=goods&a=add" target="right"><span class="icon-caret-right"></span>Add Event</a></li>
+    <li><a href="./index.php?m=goods&a=show" target="right"><span class="icon-caret-right"></span>Event List</a></li>
+    <li><a href="./index.php?m=goods&a=issue" target="right"><span class="icon-caret-right"></span>View Your Events (Host)</a></li>
+
+     <li><a href="./index.php?m=goods&a=attend" target="right"><span class="icon-caret-right"></span>View Your Events (Participant)</a></li>
+  </ul>
+
+   <h2><span class="icon-pencil-square-o"></span>Participant List</h2>
+  <ul>
+   
+    <li><a href="./index.php?m=stock&a=show" target="right"><span class="icon-caret-right"></span>View Participant List</a></li>
+  </ul>
+
+     <h2><span class="icon-pencil-square-o"></span>Feedback</h2>
+  <ul>
+   <li><a href="./index.php?m=feed&a=add" target="right"><span class="icon-caret-right"></span>Give Event Feedback</a></li>
+    <li><a href="./index.php?m=feed&a=show" target="right"><span class="icon-caret-right"></span>Feedback List</a></li>
+  </ul>
+  
+
+</div>
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);	
+	  $(this).toggleClass("on"); 
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+<ul class="bread">
+  <li><a href="##" id="a_leader_txt">Welcome page</a></li>
+</ul>
+<div class="admin">
+  <iframe scrolling="auto" rameborder="0" src="./view/add.html" name="right" width="100%" height="100%"></iframe>
+</div>
+<div style="text-align:center;">
+</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="./include/css/pintuer.css">
+<link rel="stylesheet" href="./include/css/admin.css">
+<script src="./include/js/jquery.js"></script>
+<script src="./include/js/pintuer.js"></script>
+<script src="./include/vendor/lib/ios-orientationchange-fix.js"></script>
+<script src="./include/vendor/lib/jquery-1.9.0.min.js"></script>
+<script src="./include/vendor/source/jquery.swipebox.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+ <div class="panel admin-panel">
+ <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
+  <tr>
+   
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
+      <tr>
+       <td width="90%" align="left" valign="middle">
+           <form method="get" action="index.php">
+                <input type="hidden" name="m" value="goods" />
+                <input type="hidden" name="a" value="show" />
+                <input type="hidden" name="c" value="search" />
+             <br>
+       
+
+        <span>Event Category：</span>
+        
+            <select name="type_id" id="level">
+                 <option value="xz">--please select--</option>
+          <?php if(!empty($result1)){?>
+           
+                <?php foreach($result1 as $val):?>
+                  <?php 
+                    $num =substr_count($val['path'],',');
+                    $space = str_repeat('-',($num-1)*2);
+                  ?>
+                 
+                 <option value="<?php echo $val['id']?>">&nbsp;&nbsp;<?php echo $space.$val['name']?></option>
+            
+                 <?php endforeach;?>
+              
+                 <?php } else{?>
+          <tr><td>no data</td></tr>
+          <?php } ?> 
+              </select>
+
+           <span>Event Start Time：</span>
+           <input type="datetime-local" name="start_time" value="<?php echo isset($_GET['start_time'])?$_GET['start_time']:''?>" class="text-word">
+           ~
+           <input type="datetime-local" name="end_time" value="<?php echo isset($_GET['end_time'])?$_GET['end_time']:''?>" class="text-word">
+           <input name="" type="submit" value="search" class="text-but">
+           </form>
+         </td>
+  </table>  
+    </td>
+  </tr>
+  <tr>
+  </table>
+
+
+
+
+    
+    <table  id="print" class="table table-hover text-center" width="1200px">
+      <tr >
+    
+          <th width="100" style="text-align:left; padding-left:10px;">Number</th>
+        <th>Event Name</th>
+        <th>Category</th>
+        <th>Picture</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Description</th>
+        <th>Room</th>
+        <th>Tickets Available</th>
+        <th>Price</th>
+        <th>Sale Deadline</th>
+        <th class="noprint">Register Here!</th>
+       
+      </tr>
+
+
+
+ <?php 
+
+ if(isset($result) && count($result)>0){
+         
+
+
+ if(!empty($result)){?>
+
+    <?php foreach($result as $val):?>
+      <tr   onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+
+      
+      
+          <td width="100" style="text-align:left; padding-left:10px;">
+            <?php echo ++$i?></td>
+        <td   align="center" valign="middle" class="borderright borderbottom"><?php echo $val['name']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['tname']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo '<img src="./../public/uploads/goods/'.$val['activity_pic'].'" width="50px">' ?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['start_time']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['end_time']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['descr']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['location']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['remark'].'/'.$val['over']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['price']?></td>
+        <td align="center" valign="middle" class="borderright borderbottom"><?php echo $val['sale_time']?></td>
+        <td id="noprint" width="15%" align="center" valign="middle" class="borderbottom"><!-- <a href="./index.php?m=stock&a=update&id=<?php echo $val['s_id']?>" target="" onFocus="this.blur()" class="add">Edit</a> | --> <!-- <a href="./index.php?m=stock&a=update_info&id=<?php echo $val['p_id']?>&goods_name=<?php echo $val['name']?>&stock_id=<?php echo $val['stock_id']?>&sid=<?php echo $val['s_id'] ?>" target="" onFocus="this.blur()" class="add">Editer</a> | --> <a href="./index.php?m=goods&a=signview&id=<?php echo $val['id']?>" target="" onFocus="this.blur()" class="add">Sign up</a></td>
+
+      </tr>
+
+    <?php endforeach;?>
+  
+
+    <?php } else{?>
+    <tr><td>no data</td></tr>
+    <?php } ?> 
+
+    <?php } ?>       
+     <tr>
+    <td colspan="14" align="center" valign="top" class="fenye"><?php echo $p->showPage()?></td>
+ 
+      </tr>
+    </table>
+   
+  </div> 
+</body>
+</html>

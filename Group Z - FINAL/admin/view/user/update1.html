@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="./include/css/pintuer.css">
+<link rel="stylesheet" href="./include/css/admin.css">
+<script src="./include/js/jquery.js"></script>
+<script src="./include/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel margin-top">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span> Update User</strong></div>
+  <div class="body-content">
+
+      <form method="post" action="index.php?m=user&a=do_update">
+     <div class="form-group">
+        <div class="label">
+          <label>Username：</label>
+        </div>
+        <div class="field">
+         <input type="hidden" name="id" value="<?php echo $result['id'] ?>" class="text-word">
+          <input type="text" class="input" name="username" readonly="readonly" value="<?php echo $result['username'] ?>"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label">
+          <label>Real Name：</label>
+        </div>
+        <div class="field">
+        
+          <input type="text" class="input" name="realname" readonly="readonly" value="<?php echo $result['realname'] ?>"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label">
+          <label>Type a new password here if you want to change it:</label>
+        </div>
+        <div class="field">
+          <input type="password" class="input" name="pwd" value="" />
+          <div class="tips"></div>
+        </div>
+      </div> 
+
+      <div class="form-group">
+        <div class="label">
+          <label>Re-type your new password：</label>
+        </div>
+        <div class="field">
+          <input type="password" class="input" name="repwd" value=""/>         
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>Phone number：</label>
+        </div>
+        <div class="field">
+        
+          <input type="text" class="input" name="user_phone" value="<?php echo $result['user_phone'] ?>"/>        
+        </div>
+      </div>
+
+       <div class="form-group">
+        <div class="label">
+          <label>Email：</label>
+        </div>
+        <div class="field">
+        
+          <input type="text" class="input" name="user_email" value="<?php echo $result['user_email'] ?>"/>        
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>Gender：</label>
+        </div>
+        <div class="field">
+        
+        <select name="sex" id="sex" width="200px" height="200px" >
+        <option value="">--please--</option>
+       <option value="0" <?php echo $result['sex']== 0?'selected':'';?>>&nbsp;&nbsp;Man</option>
+       <option value="1" <?php echo $result['sex']== 1?'selected':'';?> >&nbsp;&nbsp;Woman</option>
+        </select>        
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <br/>
+          <button class="button bg-main icon-check-square-o" type="submit"> Edit</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body></html>
